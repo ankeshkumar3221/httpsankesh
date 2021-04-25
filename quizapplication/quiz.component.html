@@ -1,0 +1,58 @@
+<div *ngIf="abc=='0'">
+  <h1>Login!</h1>
+    User Name : <input type="text" name="username" [(ngModel)]="username">
+    Password  : <input type="password" name="password" [(ngModel)]="password">
+    <button (click)="handleLogin()">update</button>
+</div>
+
+<div *ngIf="abc=='5'">
+  <h1>Invalid Login! Try again</h1>
+    User Name : <input type="text" name="username" [(ngModel)]="username">
+    Password  : <input type="password" name="password" [(ngModel)]="password">
+    <button (click)="handleLogin()">update</button>
+</div>
+<div *ngIf="abc=='1'">
+<div *ngIf="currentQuiz<10">
+<div style="background-image: url('https://images.unsplash.com/photo-1520531158340-44015069e78e?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8YmxhY2slMjBhbmQlMjB3aGl0ZSUyMGNpdHl8ZW58MHx8MHx8&ixlib=rb-1.2.1&w=1000&q=80');">
+<div class="container p-5">
+  <div class="row">
+    <div class="col-sm-8 offset-2">
+        <p class="text-center">{{currentQuiz+1}} of {{quizzes.length}}</p>
+        <h1>{{quizzes[randomize].question}}</h1>
+        <ul class="list-group" *ngFor="let quiz of quizzes[randomize].answer">
+          <label>
+            <li class="list-group-item" appBackground [correctAnswer]="quiz.correct">
+              <input type="radio" name="options" (change)="onAnswer(quiz.correct)" [disabled]="answerSelected">
+              {{quiz.option}}
+            </li>
+          </label>
+        </ul>
+      </div>
+      </div>
+      </div>
+      </div>
+      </div>
+      </div>
+      <div *ngIf="currentQuiz>9">
+        <div class="container-fluid" style="background-image: url('https://images.unsplash.com/photo-1520531158340-44015069e78e?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8YmxhY2slMjBhbmQlMjB3aGl0ZSUyMGNpdHl8ZW58MHx8MHx8&ixlib=rb-1.2.1&w=1000&q=80');">
+        <div class="container p-5">
+        <button class="btn btn-success btn-block" (click)="showResult()">Show Result</button>
+        <div class="text-center" *ngIf="result">
+          Correct Answers: {{correctAnswer}}
+          <div *ngIf="correctAnswer>6">
+            You are passed
+          </div>
+          <div *ngIf="correctAnswer<=6">
+            <div *ngIf="maxattempts<3">
+            <h1><b>Try again <a href="quiz.component.html" (click)="maxa()">click here</a></b></h1>
+            </div>
+            <h1><b><a href=# (click)="backtologin()">Logout</a></b></h1>
+            <div *ngIf="maxattempts>=3">
+              Max attempts reached, try again after 24 hours
+              </div>
+          </div>   Incorrect Answers: {{incorrectAnswer}}
+        </div>
+      </div>
+      </div>
+      </div>
+
